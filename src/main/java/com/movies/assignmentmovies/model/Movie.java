@@ -21,16 +21,16 @@ public class Movie {
     private String genre;
     private Integer releaseYear;
     private String director;
-    private String url;
+    private String picture;
     private String trailer;
 
-    public Movie(Long id, String title, String genre, Integer releaseYear, String director, String url, String trailer) {
+    public Movie(Long id, String title, String genre, Integer releaseYear, String director, String picture, String trailer) {
         this.id = id;
         this.title = title;
         this.genre = genre;
         this.releaseYear = releaseYear;
         this.director = director;
-        this.url = url;
+        this.picture = picture;
         this.trailer = trailer;
     }
 
@@ -78,12 +78,12 @@ public class Movie {
         this.director = director;
     }
 
-    public String getUrl() {
-        return url;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPicture(String url) {
+        this.picture = url;
     }
 
     public String getTrailer() {
