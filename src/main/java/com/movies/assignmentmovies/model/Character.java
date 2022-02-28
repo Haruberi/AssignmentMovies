@@ -1,24 +1,27 @@
 package com.movies.assignmentmovies.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "character")
 public class Character {
 
-@Id
-@GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
+
+    @Column(name = "full_name")
     private String fullName;
+    @Column(name = "alias")
     private String alias;
+    @Column(name = "gender")
     private String gender;
+    @Column(name = "url")
     private String url;
 
     public Character() { }
 
-    public Character( String fullName, String alias, String gender, String url) {
-        this.id = id;
+    public Character(String fullName, String alias, String gender, String url) {
         this.fullName = fullName;
         this.alias = alias;
         this.gender = gender;
