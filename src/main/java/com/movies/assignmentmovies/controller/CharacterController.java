@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="api/v1/character")
+@RequestMapping(value="api/v1/characters")
 public class CharacterController {
 
     @Autowired
