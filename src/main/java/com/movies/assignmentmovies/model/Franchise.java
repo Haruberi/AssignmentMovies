@@ -8,8 +8,12 @@ public class Franchise {
     @Id
     @GeneratedValue
         private Long franchiseId;
+    @Column(name="name")
         private String name;
+    @Column(name="description")
         private String description;
+
+    //OnetoOne : Movie and Franchise
 
     public Franchise() { }
 
