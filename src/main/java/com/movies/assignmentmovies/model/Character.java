@@ -23,7 +23,8 @@ public class Character {
     private String gender;
     private String url;
 
-    //OneToMany : Character and Movie
+
+    //ManyToMany : Character and Movie
     @ManyToMany(mappedBy = "characters", fetch = FetchType.LAZY)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<Movie> movies;
