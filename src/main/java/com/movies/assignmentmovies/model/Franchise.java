@@ -1,6 +1,11 @@
 package com.movies.assignmentmovies.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Franchise {
@@ -13,7 +18,21 @@ public class Franchise {
     @Column(name="description")
         private String description;
 
-    //OnetoOne : Movie and Franchise
+    //OnetoMany : Movie and Franchise
+    @OneToMany(mappedBy = "franchise")
+    Set<Movie> movies;
+
+    @JsonGetter("movies")
+    public List<String> movies(){
+        if(movies != null){
+            return movies.stream()
+                    .map(book -> {
+                        return book.getTitle();
+                    }).collect(Collectors.toList());
+        }
+        return null;
+
+    }
 
     public Franchise() { }
 

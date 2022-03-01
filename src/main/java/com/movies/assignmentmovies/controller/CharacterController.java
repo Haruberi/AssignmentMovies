@@ -22,18 +22,20 @@ public class CharacterController {
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(characters,status);
     }
-    @GetMapping(value="/id={id}")
-    public ResponseEntity<Character> getCharacterById(@PathVariable Long id) {
-        Character returnCharacter = new Character();
+
+
+    @GetMapping(value = "/id={id}")
+    public ResponseEntity<Character> getCharacterById(@PathVariable Long id){
+        Character returnChar = new Character();
         HttpStatus status;
 
-        if (characterRepository.existsById(id)) {
+        if(characterRepository.existsById(id)){
             status = HttpStatus.OK;
-            returnCharacter = characterRepository.findById(id).get();
-        } else {
+            returnChar = characterRepository.findById(id).get();
+        }else{
             status = HttpStatus.NOT_FOUND;
         }
-        return new ResponseEntity<>(returnCharacter,status);
+        return new ResponseEntity<>(returnChar, status);
     }
 
     @PostMapping

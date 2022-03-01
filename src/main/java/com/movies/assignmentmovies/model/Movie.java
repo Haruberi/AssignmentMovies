@@ -5,7 +5,9 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.apache.tomcat.jni.Library;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,13 @@ public class Movie {
         }
         return null;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "franchise_id")
+    private Franchise franchise;
+
+    //Set<Franchise> franchises;
+
 
     public Movie(Long movieId, String title, String genre, Integer releaseYear, String director, String picture, String trailer) {
         this.movieId = movieId;
