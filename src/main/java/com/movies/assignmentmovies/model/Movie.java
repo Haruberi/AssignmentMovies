@@ -7,14 +7,17 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-property = "id")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Movie {
 
     @Id
@@ -28,22 +31,23 @@ public class Movie {
     private String picture;
     private String trailer;
 
+    //ManyToMany : Movie and Character
     @ManyToMany
     @JoinTable(
-            name="character_movie",
-            joinColumns = {@JoinColumn(name="movie_id")},
-            inverseJoinColumns = {@JoinColumn(name = "character_id")}
+            name="character_movie"
     )
     public Set<Character> characters;
 
     @JsonGetter("characters")
-    public List<String> characters() {
-        return characters.stream()
-                .map(character -> {
-                    return "/api/v1/characters" + character.getCharacterId();
-                }).collect(Collectors.toList());
+    public List<String> movies() {
+        if (characters != null) {
+            return characters.stream()
+                    .map(character -> {
+                        return character.getFullName();
+                    }).collect(Collectors.toList());
+        }
+        return null;
     }
-
 
     public Movie(Long movieId, String title, String genre, Integer releaseYear, String director, String picture, String trailer) {
         this.movieId = movieId;

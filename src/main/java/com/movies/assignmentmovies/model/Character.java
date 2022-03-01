@@ -1,42 +1,44 @@
 package com.movies.assignmentmovies.model;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
 public class Character {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long characterId;
-    @Column(name= "full_name")
     private String fullName;
-    @Column(name= "alias")
     private String alias;
-    @Column(name= "gender")
     private String gender;
-    @Column(name= "url")
     private String url;
 
-    @OneToMany
-    @JoinColumn(name = "character_id")
-    Set<Movie> movies;
+    //OneToMany : Character and Movie
+    @ManyToMany(mappedBy = "characters", fetch = FetchType.LAZY)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private List<Movie> movies;
 
     @JsonGetter("movies")
-    public List<String> characters(){
-        if(movies != null){
+    public List<String> characters() {
+        if (movies != null) {
             return movies.stream()
                     .map(movie -> {
-                        return "/api/v1/movies/" + movie.getId();
+                        return movie.getTitle();
+                        //return movie.getTitle();
                     }).collect(Collectors.toList());
         }
         return null;
     }
-
 
     public Character() { }
 
