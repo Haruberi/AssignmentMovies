@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class Franchise {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long franchiseId;
     @Column(name="name")
         private String name;
