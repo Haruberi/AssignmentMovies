@@ -1,23 +1,21 @@
 package com.movies.assignmentmovies.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "character")
 public class Character {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "full_name")
     private String fullName;
-    @Column(name = "alias")
     private String alias;
-    @Column(name = "gender")
     private String gender;
-    @Column(name = "url")
     private String url;
+
 
     public Character() { }
 
