@@ -1,17 +1,15 @@
 package com.movies.assignmentmovies.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Franchise {
 
     @Id
     @GeneratedValue
-    private Long id;
-    private String name;
-    private String description;
+        private Long id;
+        private String name;
+        private String description;
 
     public Franchise() { }
 
@@ -40,5 +38,14 @@ public class Franchise {
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Franchise{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
