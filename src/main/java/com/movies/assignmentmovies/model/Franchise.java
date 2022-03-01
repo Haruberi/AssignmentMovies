@@ -7,23 +7,23 @@ public class Franchise {
 
     @Id
     @GeneratedValue
-        private Long id;
+        private Long franchiseId;
         private String name;
         private String description;
 
     public Franchise() { }
 
-    public Franchise(Long id, String name, String description) {
-        this.id = id;
+    public Franchise(Long franchiseId, String name, String description) {
+        this.franchiseId = franchiseId;
         this.name = name;
         this.description = description;
     }
 
-    public Long getId() {
-        return id;
+    public Long getFranchiseId() {
+        return franchiseId;
     }
-    public void setId(Long id) {
-        this.id = id;
+    public void setFranchiseId(Long id) {
+        this.franchiseId = id;
     }
 
     public String getName() {
@@ -43,7 +43,7 @@ public class Franchise {
     @Override
     public String toString() {
         return "Franchise{" +
-                "id=" + id +
+                "id=" + franchiseId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
