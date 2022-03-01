@@ -36,7 +36,7 @@ public class CharacterController {
         Character returnCharacter = new Character();
         HttpStatus status;
 
-        if (!id.equals(character.getId())) {
+        if (!id.equals(character.getCharacterId())) {
             status = HttpStatus.BAD_REQUEST;
             return new ResponseEntity<>(returnCharacter, status);
         }

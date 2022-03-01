@@ -3,18 +3,39 @@ package com.movies.assignmentmovies.model;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Character {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long characterId;
+    @Column(name= "full_name")
     private String fullName;
+    @Column(name= "alias")
     private String alias;
+    @Column(name= "gender")
     private String gender;
+    @Column(name= "url")
     private String url;
+
+    @OneToMany
+    @JoinColumn(name = "character_id")
+    Set<Movie> movies;
+
+    @JsonGetter("movies")
+    public List<String> characters(){
+        if(movies != null){
+            return movies.stream()
+                    .map(movie -> {
+                        return "/api/v1/movies/" + movie.getId();
+                    }).collect(Collectors.toList());
+        }
+        return null;
+    }
 
 
     public Character() { }
@@ -26,11 +47,11 @@ public class Character {
         this.url = url;
     }
 
-    public Long getId() {
-        return id;
+    public Long getCharacterId() {
+        return characterId;
     }
-    public void setId(Long id) {
-        this.id = id;
+    public void setCharacterId(Long id) {
+        this.characterId = id;
     }
 
     public String getFullName() {
