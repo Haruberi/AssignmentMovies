@@ -22,23 +22,4 @@ public class FranchiseController {
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(franchises, status);
     }
-/*
-    @PostMapping("/{id}")
-    public ResponseEntity<Franchise> addFranchise(@RequestBody Franchise franchise) {
-        HttpStatus status;
-        franchise = franchiseRepository.save(franchise);
-        status = HttpStatus.CREATED;
-        return new ResponseEntity<>(franchise, status);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Franchise> updateFranchise(@PathVariable Long id, @RequestBody Franchise franchise) {
-        Franchise returnFranchise = new Franchise();
-        HttpStatus status;
-
-        if (!id.equals(franchise.getFranchiseId())) {
-            status = HttpStatus.BAD_REQUEST;
-            return new ResponseEntity<>(returnFranchise, status);
-        }*/
-
 }
