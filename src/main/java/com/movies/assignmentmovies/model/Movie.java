@@ -3,8 +3,13 @@ package com.movies.assignmentmovies.model;
 import javax.persistence.*;
 
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -16,13 +21,28 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String title;
     private String genre;
     private Integer releaseYear;
     private String director;
     private String picture;
     private String trailer;
+
+    @ManyToMany
+    @JoinTable(
+            name="character_movie",
+            joinColumns = {@JoinColumn(name="movie_id")},
+            inverseJoinColumns = {@JoinColumn(name = "character_id")}
+    )
+    public Set<Character> characters;
+
+    @JsonGetter("characters")
+    public List<String> characters() {
+        return characters.stream()
+                .map(character -> {
+                    return "/api/v1/characters" + character.getId();
+                }).collect(Collectors.toList());
+    }
 
     public Movie(Long id, String title, String genre, Integer releaseYear, String director, String picture, String trailer) {
         this.id = id;
