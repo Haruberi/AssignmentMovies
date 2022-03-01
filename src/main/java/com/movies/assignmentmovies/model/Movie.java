@@ -19,8 +19,7 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Long movieId;
     private String title;
     private String genre;
     private Integer releaseYear;
@@ -44,8 +43,8 @@ public class Movie {
                 }).collect(Collectors.toList());
     }
 
-    public Movie(Long id, String title, String genre, Integer releaseYear, String director, String picture, String trailer) {
-        this.id = id;
+    public Movie(Long movieId, String title, String genre, Integer releaseYear, String director, String picture, String trailer) {
+        this.movieId = movieId;
         this.title = title;
         this.genre = genre;
         this.releaseYear = releaseYear;
@@ -59,11 +58,11 @@ public class Movie {
     }
 
     public Long getId() {
-        return id;
+        return movieId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long movieId) {
+        this.movieId = movieId;
     }
 
     public String getTitle() {
