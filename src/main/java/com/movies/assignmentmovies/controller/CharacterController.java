@@ -33,7 +33,7 @@ public class CharacterController {
      * @param id
      * @return
      */
-    @GetMapping(value = "/id={id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Character> getCharacterById(@PathVariable Long id){
         Character returnChar = new Character();
         HttpStatus status;
@@ -78,5 +78,27 @@ public class CharacterController {
         return new ResponseEntity<>(returnCharacter, status);
     }
 
+    /**
+     * Enter an ID to delete a desired character.
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteCharacter(@PathVariable("id") long id) {
+        characterRepository.deleteById(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    /**
+     * Delete all characters.
+     * @return
+     */
+    @DeleteMapping()
+    public ResponseEntity<HttpStatus> deleteAllCharacters() {
+        characterRepository.deleteAll();
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }
