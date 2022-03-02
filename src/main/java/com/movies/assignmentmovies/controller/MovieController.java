@@ -69,7 +69,23 @@ public class MovieController {
         status = HttpStatus.NO_CONTENT;
         return new ResponseEntity<>(returnMovie, status);
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteCharacter(@PathVariable("id") long id) {
+        movieRepository.deleteById(id);
 
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    /**
+     * Delete all characters.
+     * @return
+     */
+    @DeleteMapping()
+    public ResponseEntity<HttpStatus> deleteAllCharacters() {
+        movieRepository.deleteAll();
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 
 
