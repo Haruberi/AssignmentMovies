@@ -1,14 +1,10 @@
 package com.movies.assignmentmovies.model;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonRootName;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
@@ -34,7 +30,7 @@ public class Character {
         if (movies != null) {
             return movies.stream()
                     .map(movie -> {
-                        return movie.getTitle();
+                        return "/api/v1/movie/" + movie.getId();
                         //return movie.getTitle();
                     }).collect(Collectors.toList());
         }
@@ -43,11 +39,12 @@ public class Character {
 
     public Character() { }
 
-    public Character(String fullName, String alias, String gender, String url) {
+    public Character(String fullName, String alias, String gender, String url, List<Movie> movies) {
         this.fullName = fullName;
         this.alias = alias;
         this.gender = gender;
         this.url = url;
+        this.movies = movies;
     }
 
     public Long getCharacterId() {
