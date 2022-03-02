@@ -45,7 +45,7 @@ public class Movie {
         if (characters != null) {
             return characters.stream()
                     .map(character -> {
-                        return character.getFullName();
+                        return "/api/v1/character/" + character.getCharacterId();
                     }).collect(Collectors.toList());
         }
         return null;
@@ -54,9 +54,16 @@ public class Movie {
     @ManyToOne
     @JoinColumn(name = "franchise_id")
     private Franchise franchise;
+    @JsonGetter("franchise")
+    public String franchise() {
+        if(franchise != null){
+            return "/api/v1/franchises/" + franchise.getFranchiseId();
+        }else{
+            return null;
+        }
+    }
 
     //Set<Franchise> franchises;
-
 
     public Movie(Long movieId, String title, String genre, Integer releaseYear, String director, String picture, String trailer) {
         this.movieId = movieId;
