@@ -7,15 +7,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @Tag(name="Movie")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/movies")
 public class MovieController {
 
@@ -48,6 +46,28 @@ public class MovieController {
             status = HttpStatus.NOT_FOUND;
         }
         return new ResponseEntity<>(returnMovie,status);
+    }
+
+    @PostMapping
+    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie){
+        HttpStatus status;
+        movie = movieRepository.save(movie);
+        status = HttpStatus.CREATED;
+        return new ResponseEntity<>(movie, status);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Movie> updateMovie(@PathVariable Long id, @RequestBody Movie movie){
+        Movie returnMovie = new Movie();
+        HttpStatus status;
+
+        if(!id.equals(movie.getId())){
+            status = HttpStatus.BAD_REQUEST;
+            return new ResponseEntity<>(returnMovie, status);
+        }
+        returnMovie = movieRepository.save(movie);
+        status = HttpStatus.NO_CONTENT;
+        return new ResponseEntity<>(returnMovie, status);
     }
 
 
