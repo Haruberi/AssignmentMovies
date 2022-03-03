@@ -10,7 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Tag(name="Movie")
@@ -20,6 +24,8 @@ public class MovieController {
 
     @Autowired
     private MovieRepository movieRepository;
+    @Autowired
+    private CharacterRepository characterRepository;
     /**
      * Execute to get all the movies.
      * @return
@@ -81,6 +87,20 @@ public class MovieController {
         status = HttpStatus.NO_CONTENT;
         return new ResponseEntity<>(returnMovie, status);
     }
+    @PatchMapping("/{movie_id}/characters")
+        public Movie updateCharactersInMovie(@RequestBody Long[] characterIds, @PathVariable Long movie_id) {
+            if (!movieRepository.existsById(movie_id)) { return null; }
+
+            List<Character> characters = new ArrayList<>();
+            for (Long characterId: characterIds) {
+                Character character = characterRepository.getById(characterId);
+                characters.add(character);
+            }
+            Movie movie = movieRepository.getById(movie_id);
+            movie.setCharacters(characters);
+            return movieRepository.save(movie);
+        }
+
 
     /**
      * Delete a movie.

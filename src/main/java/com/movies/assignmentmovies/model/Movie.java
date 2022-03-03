@@ -161,4 +161,7 @@ public class Movie {
     public void setTrailer(String trailer) {
         this.trailer = trailer;
     }
+
+    public void setCharacters(List<Character> characters) {
+    }
 }

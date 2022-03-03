@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,7 @@ public class Character {
         }
         return null;
     }
+
 
     public Character() { }
 
@@ -81,4 +83,8 @@ public class Character {
     public void setUrl(String url) {
         this.url = url;
     }
+
+   /* public void getCharacterInMovie(Movie movie) {
+        movies.add(movie);
+    }*/
 }
