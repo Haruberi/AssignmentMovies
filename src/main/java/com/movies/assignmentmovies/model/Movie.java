@@ -50,13 +50,14 @@ public class Movie {
         if (characters != null) {
             return characters.stream()
                     .map(character -> {
-                        return "/api/v1/character/" + character.getCharacterId();
+                        return "/api/v1/characters/" + character.getCharacterId();
                     }).collect(Collectors.toList());
         }
         return null;
     }
 
     @ManyToOne
+   // @JoinTable(name = "movie_franchise", joinColumns = {@JoinColumn(name = "movie_id")},inverseJoinColumns = {@JoinColumn(name = "franchise_id")})
     @JoinColumn(name = "franchise_id")
     private Franchise franchise;
     @JsonGetter("franchise")
