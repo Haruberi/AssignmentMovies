@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.apache.tomcat.jni.Library;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -36,9 +37,13 @@ public class Movie {
     //ManyToMany : Movie and Character
     @ManyToMany
     @JoinTable(
-            name="character_movie"
+            name="character_movie",
+            joinColumns = {@JoinColumn(name = "characters_character_id" )},
+            inverseJoinColumns = {
+                    @JoinColumn(name="movies_movie_id")
+            }
     )
-    public Set<Character> characters;
+    public Set<Character> characters = new HashSet<>();
 
     @JsonGetter("characters")
     public List<String> movies() {
