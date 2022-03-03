@@ -1,6 +1,8 @@
 package com.movies.assignmentmovies.controller;
 
+import com.movies.assignmentmovies.model.Character;
 import com.movies.assignmentmovies.model.Franchise;
+import com.movies.assignmentmovies.repository.CharacterRepository;
 import com.movies.assignmentmovies.repository.FranchiseRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class FranchiseController {
 
     @Autowired
     private FranchiseRepository franchiseRepository;
+
+    @Autowired
+    private CharacterRepository characterRepository;
 
     /**
      * Execute to get all the franchises
@@ -81,11 +86,6 @@ public class FranchiseController {
         return new ResponseEntity<>(returnFranchise, status);
     }
 
-    /**
-     * Deelet a franchise.
-     * @param id
-     * @return
-     */
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteFranchise(@PathVariable("id") long id) {
         franchiseRepository.deleteById(id);
