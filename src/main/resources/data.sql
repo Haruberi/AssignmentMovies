@@ -14,14 +14,25 @@ INSERT INTO character ( alias, full_name, gender, url) VALUES ( 'Spidey', 'Spide
 --Movies
 INSERT INTO movie (director, genre, release_year, title, trailer, picture) VALUES
     ('Louis Leterrier', 'Action',
-     2008, 'The Incredible Hulk', 'https://www.imdb.com/video/vi1726152985?playlistId=tt0800080&ref_=tt_ov_vi', 'https://www.imdb.com/title/tt0800080/mediaviewer/rm2081134080/?ref_=tt_ov_i');
+     2008, 'The Incredible Hulk',
+     'https://www.imdb.com/video/vi1726152985?playlistId=tt0800080&ref_=tt_ov_vi',
+     'https://www.imdb.com/title/tt0800080/mediaviewer/rm2081134080/?ref_=tt_ov_i');
 
 INSERT INTO movie (director, genre, release_year, title, trailer, picture) VALUES
-                                                      ('Steven Spielberg', 'Thriller',
-                                                       1975, 'Jaws', 'https://www.youtube.com/watch?v=U1fu_sA7XhE',
-                                                       'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSvjq3-vt5bD0zu0uiek5P9wVywgas7CIi8v77BIUTobwAx0KvP');
+    ('Steven Spielberg', 'Thriller',
+     1975, 'Jaws', 'https://www.youtube.com/watch?v=U1fu_sA7XhE',
+    'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSvjq3-vt5bD0zu0uiek5P9wVywgas7CIi8v77BIUTobwAx0KvP');
 INSERT INTO movie (director, genre, release_year, title, trailer, picture) VALUES
     ('Sam Raimi', 'Action',
      2002, 'Spider-Man', 'https://www.imdb.com/video/vi1497605145?playlistId=tt0145487&ref_=tt_ov_vi', 'https://www.imdb.com/title/tt0145487/mediaviewer/rm3632146944/?ref_=tt_ov_i');
 
-INSERT INTO character_movie (movies_movie_id, characters_character_id) VALUES (1,1)
+--Character-movie
+INSERT INTO character_movie (movies_movie_id, characters_character_id) VALUES (1,1);
+INSERT INTO character_movie (movies_movie_id, characters_character_id) VALUES (2,2);
+INSERT INTO character_movie (movies_movie_id, characters_character_id) VALUES (3,3);
+
+--Movie_franchise
+INSERT INTO movie_franchise (movie_franchise_id, movie_id) VALUES (1,1);
+INSERT INTO movie_franchise (movie_franchise_id, movie_id) VALUES (2,2);
+INSERT INTO movie_franchise (movie_franchise_id, movie_id) VALUES (3,3);
+
