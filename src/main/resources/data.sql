@@ -7,10 +7,9 @@ INSERT INTO franchise ( description, name ) VALUES ( 'When bitten by a genetical
 
 --Characters
 
-INSERT INTO character ( alias, full_name, gender, url) VALUES ( 'Spidey', 'Spider Man', 'male', 'https://www.imdb.com/title/tt0145487/mediaviewer/rm3632146944/?ref_=tt_ov_i');
-INSERT INTO character ( alias, full_name, gender, url) VALUES ( 'Captain', 'Captain Quint', 'male', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2FCAPTAIN.QUINT.JAWS%2F&psig=AOvVaw0JljCbS4OQJZtxFObrLX-5&ust=1646217400354000&source=images&cd=vfe&ved=2ahUKEwjNzZ7s26T2AhVYHMAKHZ37Bi4QjRx6BAgAEAk');
 INSERT INTO character ( alias, full_name, gender, url) VALUES ( 'Bruce', 'Bruce Banner', 'male', 'https://m.media-amazon.com/images/M/MV5BMTYwNjQ5MTI1NF5BMl5BanBnXkFtZTcwMzU5MTI2Mw@@._V1_UY317_CR16,0,214,317_AL_.jpg');
-
+INSERT INTO character ( alias, full_name, gender, url) VALUES ( 'Captain', 'Captain Quint', 'male', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2FCAPTAIN.QUINT.JAWS%2F&psig=AOvVaw0JljCbS4OQJZtxFObrLX-5&ust=1646217400354000&source=images&cd=vfe&ved=2ahUKEwjNzZ7s26T2AhVYHMAKHZ37Bi4QjRx6BAgAEAk');
+INSERT INTO character ( alias, full_name, gender, url) VALUES ( 'Spidey', 'Spider Man', 'male', 'https://www.imdb.com/title/tt0145487/mediaviewer/rm3632146944/?ref_=tt_ov_i');
 
 --Movies
 INSERT INTO movie (director, genre, release_year, title, trailer, picture) VALUES
@@ -24,3 +23,5 @@ INSERT INTO movie (director, genre, release_year, title, trailer, picture) VALUE
 INSERT INTO movie (director, genre, release_year, title, trailer, picture) VALUES
     ('Sam Raimi', 'Action',
      2002, 'Spider-Man', 'https://www.imdb.com/video/vi1497605145?playlistId=tt0145487&ref_=tt_ov_vi', 'https://www.imdb.com/title/tt0145487/mediaviewer/rm3632146944/?ref_=tt_ov_i');
+
+INSERT INTO character_movie (movies_movie_id, characters_character_id) VALUES (1,1)
