@@ -36,7 +36,7 @@ public class Movie {
 
     //ManyToMany : Movie and Character
     @ManyToMany
-    @JoinTable(
+    @JoinTable (
             name="character_movie",
             joinColumns = {@JoinColumn(name = "characters_character_id" )},
             inverseJoinColumns = {
@@ -55,6 +55,27 @@ public class Movie {
         }
         return null;
     }
+    @JsonGetter("movieFranchise")
+    public String movieFranchises() {
+        if (movieFranchise != null) {
+            return "/franchise" + movieFranchise.getFranchiseId();
+        } else {
+            return null;
+        }
+    }
+    @ManyToOne()
+    @JoinTable(
+            name="movieFranchise",
+            joinColumns = {@JoinColumn(name="movie_id")},
+            inverseJoinColumns = {@JoinColumn(name="movieFranchise_id")}
+    )
+    public Franchise movieFranchise;
+/*
+    @ManyToOne()
+    @JoinTable(
+            name="movie_franchise",
+            joinColumns = {@JoinColumn(name="movie_id")},
+            inverseJoinColumns = {@JoinColumn(name="")})
 
     @ManyToOne
    // @JoinTable(name = "movie_franchise", joinColumns = {@JoinColumn(name = "movie_id")},inverseJoinColumns = {@JoinColumn(name = "franchise_id")})
@@ -67,7 +88,7 @@ public class Movie {
         }else{
             return null;
         }
-    }
+    }*/
 
     //Set<Franchise> franchises;
 
