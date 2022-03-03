@@ -3,6 +3,7 @@ package com.movies.assignmentmovies.model;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,21 +19,33 @@ public class Franchise {
     @Column(name="description")
         private String description;
 
-    //OnetoMany : Movie and Franchise
-    @OneToMany(mappedBy = "franchise")
-    Set<Movie> movies;
-
     @JsonGetter("movies")
+    public List<String> getMoviesList() {
+        return movies.stream()
+                .map(movie -> {
+                    return "/movie" + movie.getId();
+                }).collect(Collectors.toList());
+    }
+
+    @OneToMany(mappedBy = "movieFranchise", fetch = FetchType.LAZY)
+    List<Movie> movies = new ArrayList<>();
+    /*@JsonGetter("movies")
     public List<String> movies(){
         if(movies != null){
             return movies.stream()
                     .map(book -> {
+                        //return "/movie" + movies
                         return book.getTitle();
                     }).collect(Collectors.toList());
         }
         return null;
 
     }
+
+    //OnetoMany : Movie and Franchise
+    @OneToMany(mappedBy = "franchise")
+    Set<Movie> movies;*/
+
 
     public Franchise() { }
 
