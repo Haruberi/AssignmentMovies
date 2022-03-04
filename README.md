@@ -25,15 +25,17 @@ CRUD for Movies, Characters, Franchises
 --
 
 ### Executing program
-```
-Shift + F10
-```
+
+https://morning-bayou-26906.herokuapp.com/
+
 ## Authors
 
 Contributors names and contact info : 
 
-[Anna Hallberg - Haruberi](https://github.com/haruberi)
-[Leon Listo - TheNeonLeon](https://github.com/TheNeonLeon)
+* Anna Hallberg
+[Haruberi](https://github.com/haruberi)
+* Leon Listo
+[TheNeonLeon](https://github.com/TheNeonLeon)
 
 ## Version History
 
