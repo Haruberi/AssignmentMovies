@@ -36,6 +36,12 @@ public class FranchiseController {
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(franchises, status);
     }
+
+    /**
+     * Get all characters in Franchise
+     * @param franchise_id
+     * @return
+     */
     @GetMapping("/characters/{franchise_id}")
     public ResponseEntity<List<Character>>getAllCharactersInFranchise(@PathVariable long franchise_id) {
       List<Character> characters = franchiseRepository.getAllCharactersInFranchise(franchise_id);
