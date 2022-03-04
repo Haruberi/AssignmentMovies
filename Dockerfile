@@ -7,7 +7,12 @@ FROM openjdk:17 as runtime
 WORKDIR /app
 ENV PORT 8080
 ENV SPRING_PROFILE production
+ENV DATABASE_URL ""
+ENV DDL_AUTO "create-drop"
 COPY --from=gradle /app/build/libs/*.jar /app/app.jar
 RUN chown -R 1000:1000 /app
 USER 1000:1000
-ENTRYPOINT ["java","-jar","-Dserver.port=${PORT}","-Dspring.profiles.active=${SPRING_PROFILE}","app.jar"]
+ENTRYPOINT ["java","-jar","-Dserver.port=${PORT}","-Dspring.profiles.active=${SPRING_PROFILE}","app.jar",
+    "-Dspring.datasource.url=jdbc:${DATABASE_URL}",
+    "-Dspring.jpa.hibernate.ddl-auto=${DDL_AUTO}"
+]
