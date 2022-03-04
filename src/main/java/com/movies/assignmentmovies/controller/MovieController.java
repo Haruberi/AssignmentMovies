@@ -55,6 +55,13 @@ public class MovieController {
         return new ResponseEntity<>(returnMovie,status);
     }
 
+    @GetMapping(value = "/characters/movie")
+    public ResponseEntity<List<Character>> getCharactersInMovie(){
+        List<Character> characters = characterRepository.findAll();
+        HttpStatus status = HttpStatus.OK;
+        return new ResponseEntity<>(characters, status);
+    }
+
     /**
      * Create a new movie.
      * @param movie
@@ -87,6 +94,7 @@ public class MovieController {
         status = HttpStatus.NO_CONTENT;
         return new ResponseEntity<>(returnMovie, status);
     }
+
     @PatchMapping("/{movie_id}/characters")
         public Movie updateCharactersInMovie(@RequestBody Long[] characterIds, @PathVariable Long movie_id) {
             if (!movieRepository.existsById(movie_id)) { return null; }
