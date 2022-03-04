@@ -29,22 +29,6 @@ public class Franchise {
 
     @OneToMany(mappedBy = "movieFranchise", fetch = FetchType.LAZY)
     List<Movie> movies = new ArrayList<>();
-    /*@JsonGetter("movies")
-    public List<String> movies(){
-        if(movies != null){
-            return movies.stream()
-                    .map(book -> {
-                        //return "/movie" + movies
-                        return book.getTitle();
-                    }).collect(Collectors.toList());
-        }
-        return null;
-
-    }
-
-    //OnetoMany : Movie and Franchise
-    @OneToMany(mappedBy = "franchise")
-    Set<Movie> movies;*/
 
 
     public Franchise() { }
