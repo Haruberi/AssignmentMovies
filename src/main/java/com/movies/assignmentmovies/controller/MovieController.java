@@ -10,11 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @Tag(name="Movie")
@@ -26,6 +23,7 @@ public class MovieController {
     private MovieRepository movieRepository;
     @Autowired
     private CharacterRepository characterRepository;
+
     /**
      * Execute to get all the movies.
      * @return
@@ -36,6 +34,7 @@ public class MovieController {
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(movies, status);
     }
+
     /**
      * Enter an ID to get the desired movie.
      * @param id
@@ -55,6 +54,10 @@ public class MovieController {
         return new ResponseEntity<>(returnMovie,status);
     }
 
+    /**
+     * Get all characters in a movie
+     * @return
+     */
     @GetMapping(value = "/characters/movie")
     public ResponseEntity<List<Character>> getCharactersInMovie(){
         List<Character> characters = characterRepository.findAll();
@@ -95,6 +98,12 @@ public class MovieController {
         return new ResponseEntity<>(returnMovie, status);
     }
 
+    /**
+     * Pa
+     * @param characterIds
+     * @param movie_id
+     * @return
+     */
     @PatchMapping("/{movie_id}/characters")
         public Movie updateCharactersInMovie(@RequestBody Long[] characterIds, @PathVariable Long movie_id) {
             if (!movieRepository.existsById(movie_id)) { return null; }

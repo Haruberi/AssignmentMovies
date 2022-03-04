@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public interface FranchiseRepository extends JpaRepository<Franchise, Long> {
 
-
     @Query(value = "SELECT cha FROM character_franchise AS c JOIN character AS cha ON cha.character_id = c.character_id WHERE c.franchise_id = ?1", nativeQuery = true)
     List<Character> getAllCharactersInFranchise(long character_id);
 }

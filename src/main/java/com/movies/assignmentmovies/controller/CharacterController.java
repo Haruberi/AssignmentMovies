@@ -1,7 +1,6 @@
 package com.movies.assignmentmovies.controller;
 
 import com.movies.assignmentmovies.model.Character;
-import com.movies.assignmentmovies.model.Movie;
 import com.movies.assignmentmovies.repository.CharacterRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
