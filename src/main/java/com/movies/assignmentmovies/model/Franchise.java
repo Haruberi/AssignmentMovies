@@ -27,6 +27,17 @@ public class Franchise {
                 }).collect(Collectors.toList());
     }
 
+    @ManyToOne
+    @JoinTable(name = "character_franchise", joinColumns = {@JoinColumn(name = "character_id")}, inverseJoinColumns = {@JoinColumn(name = "franchise_id")})
+    public Character characterFranchise;
+
+    /*@ManyToOne()
+    @JoinTable(
+            name="movieFranchise",
+            joinColumns = {@JoinColumn(name="movie_id")},
+            inverseJoinColumns = {@JoinColumn(name="movieFranchise_id")}
+    )*/
+
     @OneToMany(mappedBy = "movieFranchise", fetch = FetchType.LAZY)
     List<Movie> movies = new ArrayList<>();
 
