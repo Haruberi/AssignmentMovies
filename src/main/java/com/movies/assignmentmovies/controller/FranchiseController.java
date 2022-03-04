@@ -1,11 +1,14 @@
 package com.movies.assignmentmovies.controller;
 
+import com.movies.assignmentmovies.model.Character;
 import com.movies.assignmentmovies.model.Franchise;
 import com.movies.assignmentmovies.model.Movie;
 import com.movies.assignmentmovies.repository.FranchiseRepository;
 import com.movies.assignmentmovies.repository.MovieRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.hibernate.type.CharacterArrayClobType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,16 +36,11 @@ public class FranchiseController {
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(franchises, status);
     }
-
-    /**
-     * Get all movies in franchise.
-     * @return
-     */
-    @GetMapping("/movies/")
-    public ResponseEntity<List<Movie>> getAllMoviesInFranchise() {
-        List<Movie> getAllMovies = movieRepository.findAll();
+    @GetMapping("/characters/{franchise_id}")
+    public ResponseEntity<List<Character>>getAllCharactersInFranchise(@PathVariable long franchise_id) {
+      List<Character> characters = franchiseRepository.getAllCharactersInFranchise(franchise_id);
         HttpStatus status = HttpStatus.OK;
-        return new ResponseEntity<>(getAllMovies, status);
+        return new ResponseEntity<>(characters, status);
     }
 
     /**
@@ -62,6 +60,17 @@ public class FranchiseController {
             status = HttpStatus.NOT_FOUND;
         }
         return new ResponseEntity<>(returnFranchise, status);
+    }
+
+    /**
+     * Get all movies in franchise.
+     * @return
+     */
+    @GetMapping("/movies/")
+    public ResponseEntity<List<Movie>> getAllMoviesInFranchise() {
+        List<Movie> getAllMovies = movieRepository.findAll();
+        HttpStatus status = HttpStatus.OK;
+        return new ResponseEntity<>(getAllMovies, status);
     }
 
     /**
