@@ -93,7 +93,7 @@ public class FranchiseController {
     }
 
     @PatchMapping("/{movie_id}/movies")
-    public Franchise patchMovies(@RequestBody long[] movieIds, @PathVariable long movie_id) {
+    public Franchise updateMoviesInFranchise(@RequestBody long[] movieIds, @PathVariable long movie_id) {
         if (!franchiseRepository.existsById(movie_id)) { return null; }
 
         List<Movie> movies = new ArrayList<>();
