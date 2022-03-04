@@ -32,8 +32,8 @@ Shift + F10
 
 Contributors names and contact info : 
 
-[@Anna Hallberg](https://github.com/haruberi)
-[@Leon Listo](https://github.com/TheNeonLeon)
+[Anna Hallberg - Haruberi](https://github.com/haruberi)
+[Leon Listo - TheNeonLeon](https://github.com/TheNeonLeon)
 
 ## Version History
 
