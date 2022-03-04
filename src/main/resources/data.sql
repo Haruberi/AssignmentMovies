@@ -36,3 +36,7 @@ INSERT INTO movie_franchise (movie_franchise_id, movie_id) VALUES (1,1);
 INSERT INTO movie_franchise (movie_franchise_id, movie_id) VALUES (2,2);
 INSERT INTO movie_franchise (movie_franchise_id, movie_id) VALUES (3,3);
 
+--Character_franchise
+--INSERT INTO character_franchise (character_id, franchise_id) VALUES (1,1);
+--INSERT INTO character_franchise (character_id, franchise_id) VALUES (2,2);
+--INSERT INTO character_franchise (character_id, franchise_id) VALUES (3,3);
