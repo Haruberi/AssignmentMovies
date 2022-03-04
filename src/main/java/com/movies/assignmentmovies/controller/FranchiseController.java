@@ -1,9 +1,7 @@
 package com.movies.assignmentmovies.controller;
 
-import com.movies.assignmentmovies.model.Character;
 import com.movies.assignmentmovies.model.Franchise;
 import com.movies.assignmentmovies.model.Movie;
-import com.movies.assignmentmovies.repository.CharacterRepository;
 import com.movies.assignmentmovies.repository.FranchiseRepository;
 import com.movies.assignmentmovies.repository.MovieRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,10 +20,6 @@ public class FranchiseController {
 
     @Autowired
     private FranchiseRepository franchiseRepository;
-
-    @Autowired
-    private CharacterRepository characterRepository;
-
     @Autowired
     private MovieRepository movieRepository;
 
@@ -38,6 +32,17 @@ public class FranchiseController {
         List<Franchise> franchises = franchiseRepository.findAll();
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(franchises, status);
+    }
+
+    /**
+     * Get all movies in franchise.
+     * @return
+     */
+    @GetMapping("/movies/")
+    public ResponseEntity<List<Movie>> getAllMoviesInFranchise() {
+        List<Movie> getAllMovies = movieRepository.findAll();
+        HttpStatus status = HttpStatus.OK;
+        return new ResponseEntity<>(getAllMovies, status);
     }
 
     /**
@@ -92,6 +97,12 @@ public class FranchiseController {
         return new ResponseEntity<>(returnFranchise, status);
     }
 
+    /**
+     * Update movies in a franchise
+     * @param movieIds
+     * @param movie_id
+     * @return
+     */
     @PatchMapping("/{movie_id}/movies")
     public Franchise updateMoviesInFranchise(@RequestBody long[] movieIds, @PathVariable long movie_id) {
         if (!franchiseRepository.existsById(movie_id)) { return null; }
@@ -106,6 +117,11 @@ public class FranchiseController {
         return franchiseRepository.save(franchise);
     }
 
+    /**
+     * Delete Franchise by Id
+     * @param id
+     * @return
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteFranchise(@PathVariable("id") long id) {
         franchiseRepository.deleteById(id);
