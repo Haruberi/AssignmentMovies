@@ -8,17 +8,15 @@ Application constructed in Spring Web.
 Database made in PostgreSQL through Hibernaite with a RESTful API to allow users to manipulate the data.
 The database store information about characters, movies they appear in and the franchises these movies belong to.
 
-Characters and movies:
+Characters and Movies:
 
 * ManyToMany relationship between Movie and Character 
+
+Movies and Franchises:
+
 * OneToMany relation between Movie and Franchise
 
-CRUD for Movies, Characters, Franchises
-
-### Dependencies
-
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* CRUD for Movies, Characters, Franchises
 
 ### Executing program
 
