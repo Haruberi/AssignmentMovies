@@ -27,8 +27,9 @@ public class CharacterController {
     public ResponseEntity<List<Character>> getAllCharacters() {
         List<Character> characters = characterRepository.findAll();
         HttpStatus status = HttpStatus.OK;
-        return new ResponseEntity<>(characters,status);
+        return new ResponseEntity<>(characters, status);
     }
+
     /**
      * Enter an ID to get the desired character.
      * @param id
@@ -47,6 +48,7 @@ public class CharacterController {
         }
         return new ResponseEntity<>(returnChar, status);
     }
+
     /**
      * Create a new character
      * @param character
@@ -103,5 +105,4 @@ public class CharacterController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

@@ -1,13 +1,18 @@
 package com.movies.assignmentmovies.controller;
 
+import com.movies.assignmentmovies.model.Character;
 import com.movies.assignmentmovies.model.Franchise;
+import com.movies.assignmentmovies.model.Movie;
+import com.movies.assignmentmovies.repository.CharacterRepository;
 import com.movies.assignmentmovies.repository.FranchiseRepository;
+import com.movies.assignmentmovies.repository.MovieRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,6 +22,12 @@ public class FranchiseController {
 
     @Autowired
     private FranchiseRepository franchiseRepository;
+
+    @Autowired
+    private CharacterRepository characterRepository;
+
+    @Autowired
+    private MovieRepository movieRepository;
 
     /**
      * Execute to get all the franchises
@@ -81,11 +92,20 @@ public class FranchiseController {
         return new ResponseEntity<>(returnFranchise, status);
     }
 
-    /**
-     * Deelet a franchise.
-     * @param id
-     * @return
-     */
+    @PatchMapping("/{movie_id}/movies")
+    public Franchise updateMoviesInFranchise(@RequestBody long[] movieIds, @PathVariable long movie_id) {
+        if (!franchiseRepository.existsById(movie_id)) { return null; }
+
+        List<Movie> movies = new ArrayList<>();
+        for (long movieId: movieIds) {
+            Movie movie = movieRepository.getById(movieId);
+            movies.add(movie);
+        }
+        Franchise franchise = franchiseRepository.getById(movie_id);
+        franchise.setFranchiseId(movie_id);
+        return franchiseRepository.save(franchise);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteFranchise(@PathVariable("id") long id) {
         franchiseRepository.deleteById(id);
