@@ -28,6 +28,10 @@ CRUD for Movies, Characters, Franchises
 
 https://morning-bayou-26906.herokuapp.com/
 
+Navigate to swagger:
+
+https://morning-bayou-26906.herokuapp.com/swagger-ui/index.html.
+
 ## Authors
 
 Contributors names and contact info : 
